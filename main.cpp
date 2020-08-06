@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include <algorithm>
-#include <random>
+#include <algorithm>  // for_each loop
+#include <random>     // random library
 #include <array>
 
 using namespace std;
@@ -59,8 +59,8 @@ int main() {
   cout << endl;
 
   // c++17 string_view
-  char letters [] {'a', 'b', 'c'};
-  string_view letter_view (letters, std::size(letters));
+  char letters[]{'a', 'b', 'c'};
+  string_view letter_view(letters, size(letters));
   cout << letter_view << endl;
 
   // c++17 Template argument deduction
