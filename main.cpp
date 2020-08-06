@@ -17,7 +17,7 @@ auto getArrayOfInts() -> array<int, 5>;
 using rng = default_random_engine;
 
 // C++14 return type deduction
-auto Get_rng() -> rng &;
+auto getRng() -> rng &;
 
 // c++17 Template argument deduction
 template <typename T = int>
@@ -38,7 +38,7 @@ int main() {
   // c++11 lambdas
   auto print = [](const auto & value) { cout << " " << value; };
 
-  // c++ 14 for_each loop
+  // c++98 found in the algorithms library and fits well with lambdas
   for_each(super_heroes.rbegin(), super_heroes.rend(), print);
   cout << endl;
 
@@ -94,7 +94,7 @@ void displayArray(const array<string, 3> &items) {
 auto getArrayOfInts() -> array<int, 5> {
   array<int, 5> list{};
   uniform_int_distribution<int> distribution{0, 9};
-  auto roll = [&]() -> int { return distribution(Get_rng()); };
+  auto roll = [&]() -> int { return distribution(getRng()); };
 
   for (auto &number : list) {
     number = roll();
@@ -103,7 +103,7 @@ auto getArrayOfInts() -> array<int, 5> {
   return list;
 }
 
-auto Get_rng() -> rng & {
+auto getRng() -> rng & {
   static rng engine{random_device{}()};
   return engine;
 }
