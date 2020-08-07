@@ -20,15 +20,29 @@ using rng = default_random_engine;
 auto getRng() -> rng &;
 
 // c++17 Template argument deduction
-template <typename T = int>
-class Adder{
+template<typename T = int>
+class Adder {
 public:
     Adder() : result{} {};
+
     Adder(const T &item1, const T &item2) : result{item1 + item2} {};
+
     T get_result() { return result; };
 private:
     T result;
 };
+
+// c++17 folding expressions with templates
+template<typename... Args>
+auto calcSum(Args... args) {
+  return (... + args);
+}
+
+// c++11 feature that returns the declared type deduced
+template<typename X, typename Y>
+auto add(X x, Y y) -> decltype(x + y) {
+  return x + y;
+}
 
 int main() {
   // c++17 Template argument deduction
@@ -36,7 +50,7 @@ int main() {
   displayArray(super_heroes);
 
   // c++11 lambdas
-  auto print = [](const auto & value) { cout << " " << value; };
+  auto print = [](const auto &value) { cout << " " << value; };
 
   // c++98 found in the algorithms library and fits well with lambdas
   for_each(super_heroes.rbegin(), super_heroes.rend(), print);
